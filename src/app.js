@@ -2,9 +2,10 @@
 const express = require('express');
 const db = require('./utilities/database');
 const initModels = require('./models/init.model');
-const Users = require('./models/users.model');
-const Tasks = require('./models/tasks.model');
-
+/* const Users = require('./models/users.model');
+const Tasks = require('./models/tasks.model'); */
+const userRoutes = require('./routes/users.routes');
+const taskRoutes = require('./routes/tasks.routes');
 //crear una instancia de express
 const app = express();
 
@@ -29,13 +30,16 @@ app.get('/', (req, res) => {
      res.status(200).json({ message: 'Bienvenido al servidor' })
 });
 
+app.use('/api/v1', userRoutes);
+app.use('/api/v1', taskRoutes);
+
 // definir las rutas de nuestros endpoints
 // para todas las consultas de usuario
 // localhost:8000/users --> todo para usuarios
 // localhost:8000/tasks --> tado para tareas
 
 // GET a /users
-app.get('/users', async (req, res) => {
+/* app.get('/users', async (req, res) => {
      try {
           //vamos a obtener el resultado de consultar a todos los usuarios de la DB
           const result = await Users.findAll();
@@ -66,10 +70,10 @@ app.get('/users/username/:username', async (req, res) => {
      } catch (error) {
           console.log(error);
      }
-});
+}); */
 
 //creando usuario
-app.post('/users' , async (req,res) => {
+/* app.post('/users' , async (req,res) => {
      try {
           const user = req.body;
           const result = await Users.create(user);
@@ -78,10 +82,10 @@ app.post('/users' , async (req,res) => {
           res.status(400).json(error.message);
           console.log(error);
      }
-})
+}) */
 
 //actalizar un usuario
-app.put('/users/:id' , async (req , res) => {
+/* app.put('/users/:id' , async (req , res) => {
      try {
           const {id} = req.params;
           const field = req.body;
@@ -99,14 +103,17 @@ app.delete('/users/:id' , async (req , res) => {
           const {id} = req.params;
           const result = await Users.destroy({where: {id}});
           res.status(200).json(result)
+          //validar si el usuario tiene tareas 
+          //si tiene no se puede eliminar el usuario
+          //de lo contrario eliminarlo
      } catch (error) {
           res.status(400).json(error.message);
           console.log(error);
      }
-})
+}) */
 
 //----------------TASKS------------
-app.get('/tasks' , async(req , res) => {
+/* app.get('/tasks' , async(req , res) => {
      try {
           const result = await Tasks.findAll();
           res.status(200).json(result);
@@ -157,7 +164,7 @@ app.delete('/tasks/:id' , async (req , res) => {
      } catch (error) {
           console.log(error);
      }
-})
+}) */
 
 app.listen(PORT, () => {
      console.log(`servidor corriendo en el puerto ${PORT}`)

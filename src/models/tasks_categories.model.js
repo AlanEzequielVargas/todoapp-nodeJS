@@ -20,7 +20,7 @@ const Tasks_categories = db.define('tasks_categories', {
                key: 'id',
           }
      },
-     todoId: {
+     taskId: {
           type: DataTypes.INTEGER,
           allowNull: false,
           field: 'task_id',
