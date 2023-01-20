@@ -1,4 +1,4 @@
-const UserServices = require('../services/user.service');
+const UserServices = require('../services/user.services');
 
 const getAllUsers = async(req , res) => {
      try {
@@ -22,7 +22,7 @@ const getUserById = async (req , res) => {
 const getUserWithTasks = async (req , res) => {
      try {
           const {id} = req.params;
-          const result = await UserServices.getWithTasks(id);
+          const result = await UserServices.userTasks(id);
           res.status(200).json(result);
      } catch (error) {
           res.status(400).json(error.message);

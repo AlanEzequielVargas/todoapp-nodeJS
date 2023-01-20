@@ -33,14 +33,23 @@ const tasks = [
 
 ];
 const categories = [
-     { name: 'Personal' }, { name: 'Academica' }, { name: 'Trabajo' }, { name: 'Salud' }, { name: 'Oseo' }, { name: 'Deporte' }, { name: 'Entretenimiento' }, { name: 'Cocina' }
+     { name: 'Personal' }, 
+     { name: 'Academica' }, 
+     { name: 'Trabajo' }, 
+     { name: 'Salud' }, 
+     { name: 'Oseo' }, 
+     { name: 'Deporte' },
+     { name: 'Entretenimiento' }, 
+     { name: 'Cocina' }
 ];
 const tasksCategories = [
-     {categoryId: 1, taskId: 1},
-     {categoryId: 2, taskId: 1},
-     {categoryId: 3, taskId: 1},
-     {categoryId: 1, taskId: 2},
-     {categoryId: 6, taskId: 2}
+     { categoryId: 1, taskId: 1 },
+     { categoryId: 4, taskId: 1 },
+     { categoryId: 1, taskId: 2 },
+     { categoryId: 2, taskId: 2 },
+     { categoryId: 1, taskId: 3 },
+     { categoryId: 4, taskId: 3 },
+     { categoryId: 6, taskId: 3 }
 ];
 
 //const categories = [];
@@ -54,7 +63,7 @@ const tasksCategories = [
 
 db.sync({ force: true })
      .then(() => {
-          console.log('iniciando nose que');
+          console.log('insertando información de prueba'); 
           users.forEach((user) => Users.create(user))/* create es lo mismo que INSERT INTO user contenido como en sql */
           setTimeout(() => {
                tasks.forEach((task) => Tasks.create(task))

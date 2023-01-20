@@ -6,7 +6,7 @@ const { getAllUsers,
      deleteUser, 
      getUserWithTasks} = require('../controllers/users.controller');
 
-const router = Router();
+const router = Router(); 
 
 //en lugar de get , put , post , delete
 

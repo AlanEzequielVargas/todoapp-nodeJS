@@ -1,4 +1,6 @@
 const Tasks = require("../models/tasks.model");
+const Categories = require("../models/categories.model");
+const Tasks_categories = require("../models/tasks_categories.model");
 
 class TaskServices {
      static async getAll(){
@@ -36,6 +38,25 @@ class TaskServices {
      static async updateTask(id , body){
           try {
                const result = await Tasks.update(body , {where: {id}});
+               return result;
+          } catch (error) {
+               throw error;
+          }
+     }
+     static async getWithCategories(id){
+          try {
+               const result = await Tasks.findOne({
+                    where: {id},
+                    include: {//incluyeme
+                         model: Tasks_categories ,//modelo y alias
+                         as: 'categories',
+                         attributes: ['id'],//solo traeme los que esta en corchetes
+                         include: {//y con eso incluyeme
+                              model: Categories,
+                              as: 'category'
+                         }
+                    }
+               });
                return result;
           } catch (error) {
                throw error;

@@ -1,6 +1,5 @@
 const db = require('../utilities/database');
 const { DataTypes } = require('sequelize');
-const Users = require('./users.model');
 
 const Tasks = db.define('task', {// primer argunmento es el nombre de la tabla
      id: {
@@ -25,11 +24,7 @@ const Tasks = db.define('task', {// primer argunmento es el nombre de la tabla
      userId: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          field: 'user_id',
-          references: {
-               model: Users, // importar modelo
-               key: 'id' // propiedad a cual queremos conectarnos
-          }
+          field: 'user_id'
      }
 } ,
 {timestamps: false}); 

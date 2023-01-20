@@ -18,9 +18,16 @@ class UserServices {
                throw error;
           }
      }
-     static async getWithTasks(id) {
+     static async userTasks(id) {
           try {
-               const result = await Users.findOne({ where: { id }, attributes: ['username'], include: { model: Tasks, as: 'task' } });
+               const result = await Users.findOne({ 
+                    where: { id }, 
+                    attributes: ['username'], 
+                    include: { 
+                         model: Tasks, 
+                         as: 'task' } 
+                    });
+               console.log(result);
                return result;
           } catch (error) {
                throw error;
@@ -48,13 +55,6 @@ class UserServices {
                return result;
           } catch (error) {
                throw error;
-          }
-     }
-     static async getWithTasks() {
-          try {
-
-          } catch (error) {
-
           }
      }
 }

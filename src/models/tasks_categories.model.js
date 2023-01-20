@@ -14,20 +14,12 @@ const Tasks_categories = db.define('tasks_categories', {
      categoryId: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          field: 'category_id',
-          references: {
-               model: Categories,
-               key: 'id',
-          }
+          field: 'category_id'
      },
      taskId: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          field: 'task_id',
-          references: {
-               model: Tasks,
-               key: 'id',
-          }
+          field: 'task_id'
      },
 }, {
      timestamps: false,

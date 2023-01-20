@@ -6,10 +6,14 @@ const initModels = require('./models/init.model');
 const Tasks = require('./models/tasks.model'); */
 const userRoutes = require('./routes/users.routes');
 const taskRoutes = require('./routes/tasks.routes');
+const authRoutes = require('./routes/auth.routes');
+const cors = require('cors');
 //crear una instancia de express
 const app = express();
 
+
 app.use(express.json());
+app.use(cors());//deja hacer peticiones (cualquier tipo de peticion) de todo el mundo
 
 const PORT = 8000;
 
@@ -22,7 +26,7 @@ initModels();
 //vamos a usar el metodo sync de nuestra db
 
 db.sync({ force: false /*altera el contenido de las tablas*/ })//devuelve una promesa
-     .then(() => console.log('base de datos sinconizada'))
+     .then(() => console.log('base de datos sincronizada'))
      .catch((error) => console.log(error))
 
 
@@ -32,6 +36,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', userRoutes);
 app.use('/api/v1', taskRoutes);
+app.use('/api/v1',authRoutes)
 
 // definir las rutas de nuestros endpoints
 // para todas las consultas de usuario

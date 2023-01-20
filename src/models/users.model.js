@@ -1,5 +1,5 @@
 //instancia para la conexion a la db 
-const db = require('../utilities/database');
+const db = require("../utilities/database");
 //tipos de datos de sequelize (varchar es string , integer , boolean , float , decimal )
 const { DataTypes } = require('sequelize');
 
