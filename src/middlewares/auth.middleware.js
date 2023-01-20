@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 //validar el token
 //si el token es valido , lo dejamos pasar a la ruta , sino respondemos 'anda pa alla bobo'
@@ -11,7 +12,7 @@ const authMiddleware = (req,res,next) => {
      //no se envia ni en params ni en body , sino que en los headers de la peticion
      const decoded = jwt.verify(
           token,
-          'shulamula',
+          process.env.JWT_SECRET,
           {algorithms: 'HS512'},
           (err,dec) => {
                if(err){

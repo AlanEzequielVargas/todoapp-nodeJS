@@ -8,6 +8,7 @@ const userRoutes = require('./routes/users.routes');
 const taskRoutes = require('./routes/tasks.routes');
 const authRoutes = require('./routes/auth.routes');
 const cors = require('cors');
+require('dotenv').config();
 //crear una instancia de express
 const app = express();
 
@@ -15,7 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());//deja hacer peticiones (cualquier tipo de peticion) de todo el mundo
 
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 //probando la conexion de la base de datos
 db.authenticate()
