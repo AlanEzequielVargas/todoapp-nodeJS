@@ -6,11 +6,12 @@ require('dotenv').config();
 
 const authMiddleware = (req,res,next) => {
      let {authorization: token} = req.headers;
-     token = token.replace("Bearer ","");
+     token = token?.replace("Bearer ","");
      // token = token.split(" ")[1];
      console.log(token);
      //no se envia ni en params ni en body , sino que en los headers de la peticion
-     const decoded = jwt.verify(
+     if(token){
+     jwt.verify(
           token,
           process.env.JWT_SECRET,
           {algorithms: 'HS512'},
@@ -20,11 +21,17 @@ const authMiddleware = (req,res,next) => {
                          error: 'Invalid token',
                          message: 'Invalid token , please send a valid token'
                     });
-               }else {
-                    
+               }else { 
+                    console.log(dec);
                     next();
                }
           });
+     }else {
+          res.status(400).json({
+               error: 'No token provided',
+               message: 'No se esta enviando un token de auntenticacion'
+          })
+     }
      
 };
 
