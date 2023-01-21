@@ -9,7 +9,8 @@ const db = new Sequelize({
      port: process.env.DB_PORT,
      password: process.env.DB_PASSWORD,
      dialect: 'postgres',
-     logging: false//sirve para no ver tanta informacion en la ocnsola
+     logging: false,//sirve para no ver tanta informacion en la ocnsola
+     dialectOptions:{ssl: {require: true , rejectUnauthorized: false}}//cuando queramos correr el proyecto local esta opcion no nos va a dejar , dialectOptions sirve para permitir correr el proyecto fuera de aqui y que funcione el SSL
 });
 
 module.exports = db;
